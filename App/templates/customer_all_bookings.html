@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All Bookings - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px; margin-left:20px">
+
+       <!-- Accepted Bookings Section -->
+       <div class="col-12">
+         <h2>Accepted Bookings</h2>
+        <p>Below are the bookings that are currently in progress. These are the orders that have been accepted, and the service providers are actively working to fulfill them. Please review the details of each booking carefully to stay updated on the status of your services. If you need to make any changes or have questions about a specific booking, feel free to reach out to us.</p>
+<br>
+
+          <br>
+
+          <!-- Responsive Table -->
+          <div class="table-responsive">
+             <table class="table table-hover table-dark">
+                <thead>
+                   <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Service Name</th>
+                      <th scope="col">Service Category</th>
+                      <th scope="col">Service Price</th>
+                      <th scope="col">Provider Name</th>
+                       <th scope="col">Provider Rating</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Booking Date</th>
+                      <th scope="col">Booking Accept Date</th>
+                      <th scope="col">Address</th>
+                       <th scope="col">Cancel Order</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   {% for booking in bookings %}
+                       {% include 'includes/cancel_order_modals.html' %}
+                   <tr>
+                      <td>{{ booking.id }}</td>
+                      <td>{{ booking.service.service_name }}</td>
+                      <td>{{ booking.service.category }}</td>
+                      <td>{{ booking.service.price }}$</td>
+                      <td>{{ booking.provider.username }}</td>
+                       <td>{{ booking.provider.rating }}</td>
+                      <td>{{ booking.status }}</td>
+                      <td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                      <td>{{ booking.Booking_Accept_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                      <td>{{ booking.address }}</td>
+                   <td>
+                         <button class="btn btn-outline-danger"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#Modal-CancellingOrder-{{ booking.id }}">
+                            Cancel Order
+                         </button>
+                   </td>
+
+                   </tr>
+                   {% endfor %}
+                </tbody>
+             </table>
+          </div>
+       </div>
+
+
+
+    </div>
+</div>
+{% endblock %}

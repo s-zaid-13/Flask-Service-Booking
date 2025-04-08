@@ -1,0 +1,47 @@
+
+
+<!-- More Info Modal -->
+<div class="modal fade" id="Modal-MoreInfo-{{ service.id }}" tabindex="-1" aria-labelledby="ModalLabel-MoreInfo-{{ service.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel-MoreInfo-{{ service.id }}">{{ service.service_name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ service.description }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Book Service Modal -->
+<div class="modal fade" id="Modal-BookingServices-{{ service.id }}" tabindex="-1" aria-labelledby="ModalLabel-Booking-{{ service.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel-Booking-{{ service.id }}">{{ service.service_name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          {{ booking_form.hidden_tag() }}
+          <h4 class="text-center">Are you sure you want to book {{ service.service_name }} service for {{ service.price }}$?</h4>
+          <div class="form-group mt-3">
+            {{ booking_form.address.label(class="font-weight-bold") }}
+            {{ booking_form.address(class="form-control", placeholder="Enter your address") }}
+          </div>
+          <h5 class="text-center mt-3">By clicking "Book Service", you will book this service.</h5>
+          <input id="book_service" name="book_service" type="hidden" value="{{ service.service_name }}">
+          {{ booking_form.submit(class="btn btn-outline-success w-100 mt-4") }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

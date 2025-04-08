@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}
+Manage Bookings - Service Booking
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px; margin-left:20px;">
+        <!-- Accepted Orders Section -->
+        <div class="col-12 col-md-8">
+            <h2 class="mb-2">Accepted Orders</h2>
+            <p class="text-muted">
+                These are the service requests yours providers have  accepted and are currently in progress. Ensure timely communication and quality service delivery to maintain high customer satisfaction.
+            </p>
+
+            <br>
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Service Category</th>
+                            <th scope="col">Service Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Provider Name</th>
+                            <th scope="col">Booking Date</th>
+                            <th scope="col">Booking Accept Date</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.user.username }}</td>
+                            <td>{{ booking.service.service_name }}</td>
+                            <td>{{ booking.service.category }}</td>
+                            <td>{{ booking.service.price }}$</td>
+                            <td>{{ booking.status }}</td>
+                            <td>{{ booking.provider.username }}</td>
+                            <td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.Booking_Accept_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.address }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pending Orders Section -->
+        <div class="col-12 col-md-4">
+            <h2 class="mb-2">Pending Orders</h2>
+        <p class="text-muted">
+            These are new service requests waiting for your confirmation. Send orders promptly to ensure efficient service and a positive customer experience.
+        </p>
+            <br>
+            <div class="row">
+                {% for pending_order in pending_orders %}
+                    {% include 'includes/sending_orders_modals.html' %}
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card text-center bg-dark text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pending_order.service.service_name }}</h5>
+                                <button type="button" class="btn btn-outline-danger mb-2"
+                                        data-bs-toggle="modal" data-bs-target="#Modal-SendingOrder-{{ pending_order.id }}">
+                                    Send order
+                                </button>
+                                <p class="card-text">
+                                    This service costs <strong>{{ pending_order.service.price }}$</strong> requested by
+                                    <strong>{{ pending_order.user.username }}</strong> with a rating of
+                                    <strong>{{pending_order.user.rating}}</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

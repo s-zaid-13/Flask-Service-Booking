@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Provider Dashboard - Service Booking
+{% endblock %}
+
+{% block content %}
+
+<div class="container dashboard-container">
+    <div class="row">
+        <!-- New/Accepted Orders -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa;">
+                <img src="https://www.shutterstock.com/image-vector/geometric-gear-mosaic-icon-new-260nw-1740851996.jpg" class="card-img-top" alt="..." style="object-fit: cover; height: 200px; width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #343a40;">Check New/Accepted Orders</h5> <!-- Dark title for contrast -->
+                    <p class="card-text" style="color: #495057;">View and manage the new orders or those that have already been accepted. Stay up-to-date with the latest service requests from customers.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('main.provider_booking_orders_page') }}" class="btn btn-primary">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage and View Bookings Card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa;">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/002/236/242/small_2x/history-minimal-thin-line-icons-set-vector.jpg" class="card-img-top" alt="..." style="object-fit: cover; height: 200px; width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #343a40;">View Orders History</h5> <!-- Dark title for contrast -->
+                    <p class="card-text" style="color: #495057;">Review and manage the history of your completed and past service orders. Track performance and service history for better insight.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('main.provider_booking_history') }}" class="btn btn-primary">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Review card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfFlE-57XbdY9XI5gg9LB1KV7IVgrDgqnFdw&s" class="card-img-top" alt="..." style="object-fit: cover; height: 200px; width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #343a40;">Check Your Reviews</h5> <!-- Dark title for contrast -->
+                    <p class="card-text" style="color: #495057;">Access customer feedback and reviews for your services. Understand customer satisfaction and improve your offerings based on their experiences.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('main.provider_reviews_page') }}" class="btn btn-primary">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+    <div class="card" style="width: 100%; max-width: 18rem; background-color: #f8f9fa;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUZkZWu21_cyN4PypHq-KIruj9uCe21W9ekA&s" class="card-img-top" alt="..." style="object-fit: cover; height: 200px; width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title" style="color: #343a40;">Edit Profile</h5> <!-- Dark title for contrast -->
+            <p class="card-text" style="color: #495057;">Update your personal information, contact details, and preferences. Make sure your profile is accurate so we can offer you the best, tailored services and updates regarding your bookings.</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-primary" onclick="showProfileAlert()">Click here</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

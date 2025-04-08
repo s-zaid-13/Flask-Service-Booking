@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Customer Bookings History - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top:20px;">
+    <div class="row">
+        <div class="col-12">
+            <h2>Completed Orders History</h2>
+            <p>Below are the bookings that you have successfully completed in the past. These are the services that have been fulfilled by our providers, and the orders are now marked as completed. You can find the details of each completed booking, including the provider’s information, service category, and the total cost. Feel free to leave a review for the services you’ve received to help us improve and provide better experiences for future bookings.</p>
+            <br>
+
+            <br>
+
+            <!-- Responsive Table with Horizontal Scrolling -->
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Service Category</th>
+                            <th scope="col">Service Price</th>
+                            <th scope="col">Provider Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Booking Accept Date</th>
+                            <th scope="col">Order Completed Date</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.service.service_name }}</td>
+                            <td>{{ booking.service.category }}</td>
+                            <td>{{ booking.service.price }}$</td>
+                            <td>{{ booking.provider.username }}</td>
+                            <td>{{ booking.status }}</td>
+                            <td>{{ booking.Booking_Accept_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.order_completed_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.address }}</td>
+                        <td class="d-flex justify-content-center align-items-center" >
+                <a href="{{ url_for('main.submit_review', booking_id=booking.id) }}" class="btn btn-outline-info">Give Review</a>
+                </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> <!-- End of table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

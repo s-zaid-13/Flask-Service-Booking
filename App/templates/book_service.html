@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Book Service - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px; margin-left:20px">
+
+       <!-- Services Section -->
+       <div class="col-12 col-md-8 mb-4">
+          <h2 class="mb-2">Available Services</h2>
+        <p class="text-muted">
+            Browse through the list of services below. Click on your desired service to view more details or to make a booking. Each service is categorized and rated for your convenience.
+        </p>
+
+          <br>
+
+          <!-- Responsive Table -->
+          <div class="table-responsive">
+             <table class="table table-hover table-dark">
+                <thead>
+                   <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Service Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Rating</th>
+                      <th scope="col">Options</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   {% for service in services %}
+                   {% include 'includes/services_modals.html' %}
+                   <tr>
+                      <td>{{ service.id }}</td>
+                      <td>{{ service.service_name }}</td>
+                      <td>{{ service.category }}</td>
+                      <td>{{ service.price }}$</td>
+                      <td>{{ service.rating }}</td>
+                      <td>
+                         <!-- More Info Button -->
+                         <button class="btn btn-outline-info"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#Modal-MoreInfo-{{ service.id }}">
+                            More Info
+                         </button>
+
+                         <!-- Book Service Button -->
+                         <button class="btn btn-outline-success"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#Modal-BookingServices-{{ service.id }}">
+                            Book Service
+                         </button>
+                      </td>
+                   </tr>
+                   {% endfor %}
+                </tbody>
+             </table>
+          </div>
+       </div>
+
+       <!-- Pending Bookings Section -->
+       <div class="col-12 col-md-4 mb-4">
+          <h2>Pending Bookings</h2>
+            <p>Your booking request is currently being processed. We will notify you as soon as a suitable service provider is available.</p>
+                      <br>
+          <div class="row">
+             {% for owned_service in owned_services %}
+             {% include 'includes/owned_services_modals.html' %}
+             <div class="col-12 col-sm-6 mb-4">
+                <div class="card text-center bg-dark text-white">
+                   <div class="card-body">
+                      <h5 class="card-title">{{ owned_service.service_name }}</h5>
+                      <button type="button"
+                              class="btn btn-outline-danger mb-2"
+                              data-bs-toggle="modal"
+                              data-bs-target="#Modal-PendingServices-{{ owned_service.id }}">
+                         Cancel Booking
+                      </button>
+                      <p class="card-text">
+                         <strong>This service costs {{ owned_service.price }}$</strong>
+                      </p>
+                   </div>
+                </div>
+             </div>
+             {% endfor %}
+          </div>
+       </div>
+
+    </div>
+</div>
+{% endblock %}

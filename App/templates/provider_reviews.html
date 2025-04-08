@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Provider Reviews - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top:20px;">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-2">Your Reviews</h2>
+        <p class="text-muted">
+            Below is a collection of reviews submitted by customers for the services you’ve delivered. These reflect your performance, quality of service, and customer satisfaction.
+        </p>
+
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Service Category</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Review Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in reviews %}
+                        <tr>
+                            <td>{{ review.id }}</td>
+                            <td>{{ review.service.service_name }}</td>
+                            <td>{{ review.service.category }}</td>
+                            <td>{{ review.rating }}</td>
+                            <td>{{ review.review_text }}</td>
+                            <td>{{ review.review_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

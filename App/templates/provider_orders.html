@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}
+Provider Dashboard - Service Booking
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <!-- Accepted Orders Section -->
+        <div class="col-12 col-md-8">
+            <h2 class="mb-2">Accepted Orders</h2>
+            <p class="text-muted">
+                Below is a list of all service bookings that have been accepted and are currently in progress or awaiting completion. This panel allows you to efficiently track customer details, service types, and booking timelines to ensure smooth service execution and client satisfaction.
+            </p>
+            <br>
+            <!-- Make the table responsive on small screens -->
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Service Category</th>
+                            <th scope="col">Service Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Booking Date</th>
+                            <th scope="col">Booking Accept Date</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Completed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                            {% include 'includes/completed_orders_modals.html' %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.user.username }}</td>
+                            <td>{{ booking.service.service_name }}</td>
+                            <td>{{ booking.service.category }}</td>
+                            <td>{{ booking.service.price }}$</td>
+                            <td>{{ booking.status }}</td>
+                            <td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.Booking_Accept_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.address }}</td>
+                            <td>
+                                <!-- More Info Button -->
+                                <button class="btn btn-outline-info"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#Modal-CompletedOrder-{{ booking.id }}">
+                                    Order Completed
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- New Orders Section -->
+        <div class="col-12 col-md-4">
+            <h2 class="mb-2">New Orders</h2>
+        <p class="text-muted">
+            These are the latest service requests awaiting your approval. Review customer details, including name and rating, to make informed decisions and ensure timely, high-quality service delivery.
+        </p>
+
+            <br>
+            <div class="row">
+                {% for new_order in new_orders %}
+                    {% include 'includes/accepting_orders_modals.html' %}
+                    <!-- Each card takes full width on small screens and half-width on medium screens -->
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card text-center bg-dark text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ new_order.service.service_name }}</h5>
+                                <button type="button"
+                                        class="btn btn-outline-danger mb-2"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#Modal-AcceptingOrder-{{ new_order.id }}">
+                                    Accept order
+                                </button>
+                                <p class="card-text">
+                                    This service costs <strong>{{ new_order.service.price }}$ </strong>requested by <strong>{{ new_order.user.username }}</strong> having rating <strong>{{new_order.user.rating  }}</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

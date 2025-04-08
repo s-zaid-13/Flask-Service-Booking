@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container text-center">
+        <h1>Book Your Services Easily</h1>
+        <p>From plumbers to electricians — find and book trusted professionals in your city.</p>
+        <a class="btn btn-outline-light mt-4" href="{% if current_user.role=='Customer' %}
+            {{ url_for('main.customers_dashboard') }}
+        {% elif current_user.role=='Service Provider' %}
+            {{ url_for('main.providers_dashboard') }}
+        {% else %}
+            {{ url_for('main.admin_dashboard') }}
+        {% endif %}">
+            Explore Services
+        </a>
+    </div>
+
+    <!-- Decorative Shapes -->
+    <div class="hero-shape shape1"></div>
+    <div class="hero-shape shape2"></div>
+</div>
+{% endblock %}

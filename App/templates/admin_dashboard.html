@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Admin Dashboard - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container dashboard-container">
+    <div class="row">
+        <!-- Add new Service Card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa; display: flex; flex-direction: column; height: 100%;">
+                <img src="https://media.istockphoto.com/id/1364946137/photo/businessman-holding-and-showing-the-best-quality-assurance-with-golden-five-stars-for.jpg?s=612x612&w=0&k=20&c=ewqI36IOI0FE9fQGEjhVrdR_4sAg77ICJJ2gZgZxH-0=" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                    <h5 class="card-title" style="color: #343a40;">Add new Service</h5>
+                    <p class="card-text" style="color: #495057;">Easily create and manage new services to offer to customers. Ensure seamless integration with the service catalog.</p>
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a href="{{ url_for('main.add_service_page') }}" class="btn btn-primary">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage and View Bookings Card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa; display: flex; flex-direction: column; height: 100%;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMCtYfuHVIEeHb_Nc_0QRGdPOA9FdjH_uHtQ&s" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                    <h5 class="card-title" style="color: #343a40;">Manage and View Bookings</h5>
+                    <p class="card-text" style="color: #495057;">Efficiently monitor and manage customer bookings, including upcoming and past appointments. Ensure all bookings are properly handled.</p>
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a href="{{ url_for('main.manage_bookings_page') }}" class="btn btn-primary">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Manage Providers Card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa; display: flex; flex-direction: column; height: 100%;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQByCz698eo-eSfVUp4kpY9sXmbJB1LsQQAeA&s" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                    <h5 class="card-title" style="color: #343a40;">Manage Providers</h5>
+                    <p class="card-text" style="color: #495057;">Oversee and manage service provider profiles, ensuring they meet the standards for the services they offer.</p>
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a href="#" class="btn btn-primary" onclick="showProfileAlert()">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="col-12 col-md-6 col-lg-5 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; background-color: #f8f9fa; display: flex; flex-direction: column; height: 100%;">
+                <img src="https://thumbs.dreamstime.com/b/settings-gears-icon-abstract-blue-background-illustration-dark-digital-texture-grunge-elegant-paint-modern-design-concept-167074493.jpg" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                    <h5 class="card-title" style="color: #343a40;">Settings</h5>
+                    <p class="card-text" style="color: #495057;">Adjust system settings, manage user roles, and configure system preferences for a smoother service management experience.</p>
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a href="#" class="btn btn-primary" onclick="showProfileAlert()">Click here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

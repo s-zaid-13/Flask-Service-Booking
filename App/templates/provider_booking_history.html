@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Provider Orders History - Service Booking
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top:20px;">
+    <div class="row">
+        <div class="col-12">
+           <h2 class="mb-2">Completed Orders History</h2>
+            <p class="text-muted">
+                Below is a comprehensive record of all service orders you have successfully completed, including customer details, service information, and completion timelines.
+            </p>
+
+            <br>
+
+            <!-- Responsive Table with Horizontal Scrolling -->
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Service Category</th>
+                            <th scope="col">Service Price</th>
+                            <th scope="col">Status</th>
+
+                            <th scope="col">Booking Accept Date</th>
+                            <th scope="col">Order Completed Date</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.user.username }}</td>
+                            <td>{{ booking.service.service_name }}</td>
+                            <td>{{ booking.service.category }}</td>
+                            <td>{{ booking.service.price }}$</td>
+                            <td>{{ booking.status }}</td>
+
+                            <td>{{ booking.Booking_Accept_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                             <td>{{ booking.order_completed_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ booking.address }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> <!-- End of table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

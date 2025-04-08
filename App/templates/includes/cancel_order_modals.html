@@ -1,0 +1,42 @@
+<style>
+  .modal-content {
+    background-color: #212121;
+    color: white;
+  }
+</style>
+
+<!-- Pending Services -->
+<div class="modal fade" id="Modal-CancellingOrder-{{ booking.id }}"
+     tabindex="-1"
+     aria-labelledby="ModalLabel-Cancelling-{{ booking.id }}"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel-Cancelling-{{ booking.id }}">
+          {{ booking.service.service_name }}
+        </h5>
+        <button type="button" class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          {{ cancelling_form.hidden_tag() }}
+          <h4 class="text-center mb-3">
+            Are you sure you want to  cancel <strong>{{ booking.service.service_name }}</strong> booking?
+          </h4>
+          <h6 class="text-center mb-4">
+            By clicking, you will cancel this booking.
+          </h6>
+          <input id="cancel_booking" name="cancel_booking" type="hidden" value="{{ booking.id }}">
+          {{ cancelling_form.submit(class="btn btn-outline-danger w-100") }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
