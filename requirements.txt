@@ -13,3 +13,4 @@ attrs~=25.1.0
 pillow~=11.1.0
 filelock~=3.18.0
 alembic~=1.15.2
+gunicorn==20.1.0
